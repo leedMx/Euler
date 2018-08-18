@@ -26,7 +26,6 @@ int main(){
 
 int permuteDigitsRecursively(int*chosenDigits,int*choicesAvailable,int choicesMade){
 	int multiplicand,multiplier,product;
-//	printf("permuteDigitsRecursively(%d,%d,%d)\n",chosenDigits[0],choicesAvailable[0],choicesMade);
 	if (choicesMade==9){
 		multiplicand=                                            (chosenDigits[0]*10)+chosenDigits[1];
 		multiplier=	                       (chosenDigits[2]*100)+(chosenDigits[3]*10)+chosenDigits[4];
@@ -52,7 +51,6 @@ int permuteDigitsRecursively(int*chosenDigits,int*choicesAvailable,int choicesMa
 
 				chosenDigits[choicesMade]='\0';
 				choicesAvailable[i]=i+1;
-
 			}
 		}
 	}
