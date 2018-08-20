@@ -13,8 +13,14 @@ int nonTrivialDigitCancellingFractions();
 int containsDigit(int,int);
 double removeDigit(int,int);
 
+int numeratorsProduct=1;
+int denominatorsProduct=1;
+
 int main(){
+
 	nonTrivialDigitCancellingFractions();
+	printf("Product= %d/%d \n",numeratorsProduct,denominatorsProduct);
+
 	return 0;
 }
 
@@ -34,6 +40,8 @@ int nonTrivialDigitCancellingFractions(){
 						printf("%d/%d",numerator,denominator);
 						printf(" = %.0f/%.0f",ammendedNumerator,ammendedDenominator);
 						printf("\n");
+						numeratorsProduct*=(int)ammendedNumerator;
+						denominatorsProduct*=(int)ammendedDenominator;
 					}
 				}
 			}
