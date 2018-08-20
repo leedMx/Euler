@@ -5,8 +5,12 @@ Find the sumof all products whose multiplicand/multiplier/product identity can b
 HINT: Some products can be obtained in more than one way so be sure to only include it once in your sum.*/
 
 #include <stdio.h>
+#define FALSE 0
+#define print(ref) printf(#ref"=%d\n",ref);
 
 int permuteDigitsRecursively(int*,int*,int);
+int addIfValid(int,int,int);
+int useDigitsFromArray(int,int,int*);
 int existInArray(int,int*);
 int sumArray(int*);
 
@@ -18,8 +22,9 @@ int main(){
 	int chosenDigits[9]={0};
 
 	permuteDigitsRecursively(chosenDigits,choicesAvailable,0);
-
-	printf("Sum of unique products: %d\n",sumArray(products));
+	
+	print(productsFound)
+	print(sumArray(products))
 
 	return 0;
 }
@@ -27,17 +32,19 @@ int main(){
 int permuteDigitsRecursively(int*chosenDigits,int*choicesAvailable,int choicesMade){
 	int multiplicand,multiplier,product;
 	if (choicesMade==9){
-		multiplicand=                                            (chosenDigits[0]*10)+chosenDigits[1];
-		multiplier=	                       (chosenDigits[2]*100)+(chosenDigits[3]*10)+chosenDigits[4];
-		product=	(chosenDigits[5]*1000)+(chosenDigits[6]*100)+(chosenDigits[7]*10)+chosenDigits[8];
+
+		multiplicand= useDigitsFromArray(0,1,chosenDigits);
+		multiplier=	useDigitsFromArray(2,4,chosenDigits);
+		product= useDigitsFromArray(5,8,chosenDigits);
 		
-		if ((multiplicand*multiplier)==product){
-			printf("%d*%d=%d\n",multiplicand,multiplier,product);
-			if(!existInArray(product,products)){
-				products[productsFound]=product;
-				productsFound++;
-			}
-		}
+		addIfValid(multiplicand,multiplier,product);
+	
+		multiplicand= useDigitsFromArray(0,0,chosenDigits);
+		multiplier=	useDigitsFromArray(1,4,chosenDigits);
+		product= useDigitsFromArray(5,8,chosenDigits);
+		
+		addIfValid(multiplicand,multiplier,product);
+	
 		return 0;
 
 	}else{
@@ -57,6 +64,25 @@ int permuteDigitsRecursively(int*chosenDigits,int*choicesAvailable,int choicesMa
 	return 0;
 }
 
+int addIfValid(int multiplicand,int multiplier, int product){
+	if ((multiplicand*multiplier)==product){
+		printf("%d*%d=%d\n",multiplicand,multiplier,product);
+		if(existInArray(product,products)==FALSE){
+			products[productsFound++]=product;
+		}
+	}
+	return 0;
+}
+
+int useDigitsFromArray(int first, int last, int*array){
+	int result=0;
+	while (first<=last){
+		result*=10;
+		result+=array[first++];
+	}
+	return result;
+}
+
 int existInArray(int value, int*array){
 	for (int i=0 ; i < 10 ; i++)
 		if(array[i] == value) return 1;
@@ -69,4 +95,3 @@ int sumArray(int*array){
 		sum+=array[i];
 	return sum;
 }
-
