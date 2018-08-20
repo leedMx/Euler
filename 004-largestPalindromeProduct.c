@@ -10,6 +10,7 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 
 int pickMax(int new,int current);
 int findPalindrome(int number);
+int length(int);
 int compareDigits(int number, int a, int b);
 int getNthDigit(int number, int n);
 
@@ -31,11 +32,19 @@ int pickMax(int new,int current){
 }
 
 int findPalindrome(int number){
-	if(compareDigits(number,1,6)
-	&&compareDigits(number,2,5)
-	&&compareDigits(number,3,4))
-		return number;
-	return 0;
+	for(int first=1, last=length(number) ; first<=last; first++,last--)
+		if(compareDigits(number,first,last)==0)
+			return 0;
+	return number;
+}
+
+int length(int number){
+	int result=0;
+	while(number){
+		number/=10;
+		result++;
+	}
+	return result;
 }
 
 int compareDigits(int number,int a, int b){
@@ -46,7 +55,9 @@ int compareDigits(int number,int a, int b){
 
 int getNthDigit(int number,int n){
 	int i=1;
-	for ( ;n>0;n--)
-	i=i*10;
+	while(n>0){
+		i=i*10;
+		n--;
+	}
 	return (number%i)/(i/10);
 }
