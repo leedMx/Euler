@@ -30,7 +30,10 @@ int checkPalindromeBothBases(int number){
 	if(isPalindrome(digitsArray,digits)){
 		digits = numberToDigits(number,2,digitsArray);
 	}
-	return isPalindrome(digitsArray,digits);
+	if (isPalindrome(digitsArray,digits)){
+		return number;
+	}
+	return 0;
 }
 
 int numberToDigits(int number,int base,int*array){
@@ -42,20 +45,6 @@ int numberToDigits(int number,int base,int*array){
 		}
 		array[position]=number%base;
 		number/=base;
-		position++;
-	}
-	return position+1;
-}
-
-int toBinary(int number,int*array){
-	int position=0;
-	while(number){
-		if (number==1 || number==0){
-			array[position]=number;
-			break;
-		}
-		array[position]=number%2;
-		number/=2;
 		position++;
 	}
 	return position+1;
