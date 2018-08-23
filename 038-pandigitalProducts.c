@@ -41,14 +41,16 @@ long concatenatedProduct(long number){
 
 	for (int i=1; i<5 ; i++){
 	product=number*i;
-		if (concatenationLength<10){
-			if (concatenationLength==9){
-				return concatenatedProduct;
-			}
-			concatenatedProduct=concatenate(concatenatedProduct,product);
-			concatenationLength+=length(product);
+		if (concatenationLength>9)return 0;
+
+		if (concatenationLength==9){
+			return concatenatedProduct;
 		}
+
+		concatenatedProduct=concatenate(concatenatedProduct,product);
+		concatenationLength+=length(product);
 	}
+
 	return 0;
 }
 
