@@ -5,25 +5,52 @@ The prime factors of 13195 are 5, 7, 13 and 29.
 What is the largest prime factor of the number 600851475143 ?
 */
 #include <stdio.h>
-#include <math.h>
-#define NUMERO 64
-#define LIMITE_SUPERIOR_PRIMOS 10000
+#define print(ref) printf("%ld\n",ref);
+#define HACKERRANK 0
 
-int factorizar(long x);
+
+long largestPrimeFactor(long);
+void hackerrank();
 
 int main(){
-	printf("Factores Primos de %ld :\n",(long)NUMERO);
-	factorizar(NUMERO);
+	if(!HACKERRANK){
+		long solution = 0, number = 600851475143;
+
+		solution = largestPrimeFactor(number);
+
+		print(solution)
+	}
+	if(HACKERRANK) hackerrank();
 	return 0;
 }
 
-int factorizar(long x){
-	for (long i=2; i<LIMITE_SUPERIOR_PRIMOS; i++){
-	if(x%i==0){
-		printf("%ld es factor\n",i);
-		x=x/i;
-		printf("buscando factores de %ld\n",x);
-		}
+long largestPrimeFactor(long number){
+	long factor = 3, temp = number;
+	while (( number > 1 ) && (number %2 == 0)){
+		number /= 2;
 	}
-	return 0;
+	if (number == 1) return 2;
+
+	while ( factor*factor <= temp ){
+		while(number % factor == 0){
+			number /= factor;
+		}
+		if (number == 1) return factor;
+		factor+=2;
+	}
+	if (number>2) return number;
+
+	return factor-2;
 }
+
+void hackerrank(){
+	long solution = 0, number = 0;
+	int testCases = 0;
+	scanf("%d",&testCases);
+	for (int test = 0 ; test < testCases ; test++ ){
+		scanf("%ld\n",&number);
+		solution = largestPrimeFactor(number);
+		print(solution);
+	}
+}
+
