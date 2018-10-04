@@ -1,9 +1,18 @@
 ====================
 DISCLAIMER:
 ====================
-This is a privately own repository, created to be able to work remotely on the Euler Project's problems.
-It does not intend to publicly disclose the solutions for such problems
-However, the code can be reviewed and analyzed under the viewers' responsability.
+This repository does not intend to publicly disclose the solutions for such problems
+The code can be reviewed and analyzed under the viewers' responsability.
+====================
 
-Please be respectful to the guidelines of the project.
+I am keeping the repository as public just to have a portfolio of my coding style to be available to any interested recruiter. 
+
+It is intended to be a personal reminder of my progress. Therefore, the more recent the commit, the better it will reflect the nuances and improvements on my code.
+
+I aim to generate clean SOLID code, therefore I am alway focused on code readability, re usability and maintainability.
+
+As a personal challenge, I try to stick to only using stdio.h which forces me to generate my own implementations of abstract data types for better understanding.
+
+There are af ew exceptions in which I use math.h due to the efficiency of sqrt(), and recently included stdlib.h for dynamic memory allocation. Which I think it will be more often than not, since I intend to increase the complexity of my solutions.
+
 ====================
